@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Time & Timezone App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <h1>WorldTime</h1>
+                </div>
+                <div class="header-info">
+                    <div class="current-time" id="currentTime"></div>
+                    <div class="current-date" id="currentDate"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input 
+                            type="text" 
+                            id="citySearch" 
+                            placeholder="Search for a city or timezone..."
+                            autocomplete="off"
+                        >
+                        <button class="clear-search" id="clearSearch">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+                
+                <div class="quick-actions">
+                    <button class="action-btn" id="addCurrentLocation">
+                        <i class="fas fa-location-dot"></i>
+                        Add Current Location
+                    </button>
+                    <button class="action-btn" id="showFavorites">
+                        <i class="fas fa-star"></i>
+                        Favorites (<span id="favCount">0</span>)
+                    </button>
+                </div>
+            </section>
+
+            <!-- Timezone Cards Container -->
+            <section class="timezone-grid" id="timezoneGrid">
+                <div class="empty-state">
+                    <i class="fas fa-clock"></i>
+                    <h3>No timezones added yet</h3>
+                    <p>Search for a city to get started!</p>
+                </div>
+            </section>
+
+            <!-- Floating Action Button -->
+            <button class="fab" id="fabMenu">
+                <i class="fas fa-plus"></i>
+            </button>
+
+            <!-- FAB Menu -->
+            <div class="fab-menu" id="fabMenuOptions">
+                <button class="fab-option" id="addMultiple">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Add Multiple</span>
+                </button>
+                <button class="fab-option" id="exportData">
+                    <i class="fas fa-download"></i>
+                    <span>Export</span>
+                </button>
+                <button class="fab-option" id="importData">
+                    <i class="fas fa-upload"></i>
+                    <span>Import</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- Modal for Multiple Add -->
+        <div class="modal" id="multipleAddModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Multiple Timezones</h3>
+                    <button class="modal-close" id="closeModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="popular-cities">
+                        <h4>Popular Cities</h4>
+                        <div class="cities-grid" id="popularCities">
+                            <!-- Popular cities will be populated by JS -->
+                        </div>
+                    </div>
+                    <div class="timezone-regions">
+                        <h4>By Region</h4>
+                        <div class="regions-container" id="regionsContainer">
+                            <!-- Regions will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="cancelMultiple">Cancel</button>
+                    <button class="btn btn-primary" id="addSelected">Add Selected</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Container -->
+        <div class="notification-container" id="notificationContainer"></div>
+
+        <!-- Hidden file input for import -->
+        <input type="file" id="fileInput" accept=".json" style="display: none;">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
